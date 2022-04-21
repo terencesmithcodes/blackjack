@@ -4,7 +4,7 @@
 
 const suit = ['hearts', 'diamonds', 'clubs', 'spades']
 const rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-const deck = []
+let deck = []
 const dealerHand = document.getElementById('dealer-hand')
 const playerHand = document.getElementById('player-hand')
 const dealButton = document.getElementById('deal-button')
@@ -15,7 +15,6 @@ const messages = document.getElementById('messages')
 const standButton = document.getElementById('stand-button')
 let dealer = []
 let player = []
-let restart = []
 let dealersPoints = 0
 let playersPoints = 0
 
@@ -68,8 +67,6 @@ const deal = () => {
   }
 }
 
-
-
 //images
 const getCardImage = (dealtCard, player) => {
   let card = document.createElement('img')
@@ -88,8 +85,7 @@ const getCardImage = (dealtCard, player) => {
     playerHand.appendChild(card)
   }else {
     dealerHand.appendChild(card)
-  }
-    
+  }   
 }
 
 const calcHand = (card, player) => {
@@ -135,7 +131,9 @@ const pointConditions = () => {
   } else {
     messages.innerHTML = 'Tie'
   }
-  // restartGame()
+  setTimeout(() => {
+    restartGame();
+  }, 3000);
 }
 
 const dealerTurn = () => {
@@ -146,12 +144,15 @@ const dealerTurn = () => {
   pointConditions()
 }
 
-// const restartGame = () => {
-//     let deck = restart
-//     playerHand.remove()
-//     dealerHand.remove() 
-//   }
-//   deal()
+const restartGame = () => {
+  playerHand.innerHTML = ''
+  dealerHand.innerHTML = ''
+  dealersPoints = 0
+  playersPoints = 0
+  messages.innerHTML = ""
+  playerPoints.innerHTML = ''
+  dealerPoints.innerHTML = ''
+  }
 
 
 const allowDealBtn = () => {
